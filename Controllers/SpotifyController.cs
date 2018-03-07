@@ -14,12 +14,14 @@ namespace SpotifySMS.Controllers
     [Route("api/[controller]")]
     public class SpotifyController : Controller
     {
+        protected IConfiguration Configuration {get;set;}
         public string SPOTIFY_ID {get; private set;}
         public string SPOTIFY_SECRET {get; private set;}
-        public SpotifyController()
+        public SpotifyController(IConfiguration config)
         {
-            SPOTIFY_ID = "UPDATE_WITH_CLIENT_ID";
-            SPOTIFY_SECRET = "UPDATE_WITH_CLIENT_SECRET";
+            Configuration = config;
+            SPOTIFY_ID = Configuration["CLIENT_ID"];
+            SPOTIFY_SECRET = Configuration["CLIENT_SECRET"];
         }
 
         [HttpPost]
