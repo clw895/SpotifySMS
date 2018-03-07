@@ -24,8 +24,8 @@ namespace SpotifySMS.Controllers
             SPOTIFY_SECRET = Configuration["CLIENT_SECRET"];
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post([FromForm] string body)
+        [HttpGet]
+        public async Task<IActionResult> HttpGet([FromQuery] string body)
         {
             var spotify = new SpotifyClient(SPOTIFY_ID,SPOTIFY_SECRET);
             var song = await spotify.GetSong(body);
